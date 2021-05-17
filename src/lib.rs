@@ -109,7 +109,7 @@ pub use cargo_metadata::{
 };
 use lazy_static::lazy_static;
 use regex::Regex;
-use tracing::{debug, error, info, instrument, warn};
+use tracing::{debug, info, instrument, warn};
 
 /// Ensure the rendered field of JSON messages contains embedded ANSI color
 /// codes for respecting rustc's default color scheme.
