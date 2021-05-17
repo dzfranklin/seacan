@@ -223,17 +223,18 @@ impl FeatureSpec {
     /// `features`, on top of the default features (i.e. `--features ...`).
     #[must_use]
     pub fn new(features: Vec<String>) -> Self {
-        Self(FeatureSpecInner::Subset {
-            include_default: true,
-            features,
-        })
+        Self::new_with(true, features)
     }
 
     /// Only `features` (i.e. `--features ... --no-default-features`)
     #[must_use]
     pub fn new_no_default(features: Vec<String>) -> Self {
+        Self::new_with(false, features)
+    }
+
+    fn new_with(include_default: bool, features: Vec<String>) -> Self {
         Self(FeatureSpecInner::Subset {
-            include_default: false,
+            include_default,
             features,
         })
     }
