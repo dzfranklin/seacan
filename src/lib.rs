@@ -31,7 +31,6 @@
 //!     fresh: true,
 //! })
 //! ```
-//! </details>
 //!
 //! # Tests
 //!

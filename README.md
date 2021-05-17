@@ -31,7 +31,6 @@ Ok(ExecutableArtifact {
     fresh: true,
 })
 ```
-</details>
 
 ## Tests
 
