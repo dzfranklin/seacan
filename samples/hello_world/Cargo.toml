@@ -1,0 +1,16 @@
+[package]
+name = "hello_world"
+version = "0.1.0"
+authors = ["Daniel Franklin <daniel@danielzfranklin.org>"]
+edition = "2018"
+
+[features]
+default = ["default_feature"]
+non_default_feature = []
+default_feature = []
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[workspace]
+members = ["ws_member"]
+
+[dependencies]
