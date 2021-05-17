@@ -3,6 +3,11 @@ name = "seacan"
 version = "0.0.1"
 authors = ["Daniel Franklin <daniel@danielzfranklin.org>"]
 edition = "2018"
+description = "A library for interacting with cargo to build things"
+license = "MIT"
+repository = "https://github.com/danielzfranklin/seacan"
+keywords = ["cargo", "compile", "build", "ide"]
+categories = ["development-tools"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]

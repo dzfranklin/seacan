@@ -1,12 +1,10 @@
-#![warn(clippy::all, clippy::pedantic, missing_docs)] // TODO: clippy::cargo
+#![warn(clippy::all, clippy::pedantic, missing_docs, clippy::cargo)]
 
-//! # seacan
-//!
 //! A library for interacting with cargo to build things.
 //!
 //! The main entrypoints are [`bin::Compiler`] and [`test::Compiler`].
 //!
-//! ## Binaries and examples
+//! # Binaries and examples
 //!
 //! Building binaries and examples is relatively simple, although we do use
 //! regexes to give you nicer errors in a few cases.
@@ -35,7 +33,7 @@
 //! ```
 //! </details>
 //!
-//! ## Tests
+//! # Tests
 //!
 //! Building tests is a bit more complicated. We expose all of Cargo's api for
 //! specifying which test artifacts to build. After we build each artifact we
@@ -87,7 +85,7 @@
 //!
 //! Only the default test runner (`libtest`) is supported.
 //!
-//! ## Why the name?
+//! # Why the name?
 //!
 //! A Sea Can is another word for a shipping container. Shipping containers were
 //! invented to provide a standard interface around handling cargo.

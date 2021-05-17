@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+fail() {
+    printf "pre-commit hook error: %s\n" "$*" >&2
+    exit 1
+}
+
+if ! command -v cargo-readme &>/dev/null; then
+    fail "cargo-readme not installed"
+fi
+cargo readme >README.md
+git add README.md
