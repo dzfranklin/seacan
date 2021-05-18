@@ -162,8 +162,8 @@ pub enum TypeSpec {
     Examples,
     /// Doctests
     Doc,
-    /// All tests
-    All,
+    /// Whatever `cargo test` tests if you specify nothing
+    Unspecified,
 }
 
 impl TypeSpec {
@@ -331,7 +331,7 @@ impl Compiler {
             TypeSpec::Doc => cmd.arg("--doc"),
             TypeSpec::Example(name) => cmd.args(&["--example", name]),
             TypeSpec::Examples => cmd.arg("--examples"),
-            TypeSpec::All => &mut cmd,
+            TypeSpec::Unspecified => &mut cmd,
         };
 
         let mut cmd = cmd.spawn()?;
@@ -518,10 +518,10 @@ mod tests {
     }
 
     #[test]
-    fn test_all() -> Result {
+    fn test_unspecified() -> Result {
         init();
 
-        let artifacts = Compiler::new(NameSpec::substring("test_in_lib"), TypeSpec::All)
+        let artifacts = Compiler::new(NameSpec::substring("test_in_lib"), TypeSpec::Unspecified)
             .workspace("samples/hello_world")
             .compile()?;
 
