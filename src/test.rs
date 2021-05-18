@@ -152,6 +152,8 @@ pub enum TypeSpec {
     Examples,
     /// Doctests
     Doc,
+    /// All tests
+    All,
 }
 
 impl TypeSpec {
@@ -319,6 +321,7 @@ impl Compiler {
             TypeSpec::Doc => cmd.arg("--doc"),
             TypeSpec::Example(name) => cmd.args(&["--example", name]),
             TypeSpec::Examples => cmd.arg("--examples"),
+            TypeSpec::All => &mut cmd,
         };
 
         let mut cmd = cmd.spawn()?;
@@ -335,10 +338,7 @@ impl Compiler {
                     handle_compiler_msg(msg, &mut self.on_compiler_msg)
                 }
                 cargo_metadata::Message::CompilerArtifact(art) => {
-                    if matches!(self.test_type, TypeSpec::Integration(_) | TypeSpec::Integrations)
-                        // test means integration test specifically
-                        && !art.target.kind.iter().any(|k| k == "test")
-                    {
+                    if !art.profile.test {
                         // cargo --test builds binaries so that integration tests can run them.
                         // See <https://github.com/rust-lang/cargo/issues/7958>
                         continue;
@@ -504,6 +504,20 @@ mod tests {
             vec!["--exact".to_string(), "test_in_example_1".to_string()],
             test_fn.run_args()
         );
+        Ok(())
+    }
+
+    #[test]
+    fn test_all() -> Result {
+        init();
+
+        let artifacts = Compiler::new(NameSpec::substring("test_in_lib"), TypeSpec::All)
+            .workspace("samples/hello_world")
+            .compile()?;
+
+        let tests: Vec<TestFn> = artifacts.into_iter().flat_map(|a| a.tests).collect();
+        assert_eq!(2, tests.len());
+
         Ok(())
     }
 
