@@ -1,6 +1,6 @@
 [package]
 name = "seacan"
-version = "0.0.1"
+version = "0.1.0"
 authors = ["Daniel Franklin <daniel@danielzfranklin.org>"]
 edition = "2018"
 description = "A library for interacting with cargo to build things"

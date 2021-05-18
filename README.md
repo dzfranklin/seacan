@@ -1,6 +1,6 @@
 # seacan
 
-[![Version 0.0.1](https://img.shields.io/crates/v/seacan)][crates-io]
+[![Version 0.1.0](https://img.shields.io/crates/v/seacan)][crates-io]
 [![License MIT](https://img.shields.io/crates/l/seacan)][crates-io]
 
 A library for interacting with cargo to build things.
