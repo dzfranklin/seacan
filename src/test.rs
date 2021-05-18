@@ -526,7 +526,7 @@ mod tests {
             .compile()?;
 
         let tests: Vec<TestFn> = artifacts.into_iter().flat_map(|a| a.tests).collect();
-        assert_eq!(2, tests.len());
+        assert_eq!(3, tests.len());
 
         Ok(())
     }
@@ -693,16 +693,18 @@ mod tests {
         let mut artifact = artifacts.pop().unwrap();
         artifact.tests.sort_by(|a, b| a.name.cmp(&b.name));
 
-        assert_eq!(4, artifact.tests.len());
+        assert_eq!(5, artifact.tests.len());
         let test_1 = &artifact.tests[0];
         let test_2 = &artifact.tests[1];
         let test_3 = &artifact.tests[2];
         let test_4 = &artifact.tests[3];
+        let test_5 = &artifact.tests[4];
 
         assert_eq!("module::test_in_module", test_1.name);
         assert_eq!("test_default_feature", test_2.name);
-        assert_eq!("test_in_lib_1", test_3.name);
-        assert_eq!("test_in_lib_2", test_4.name);
+        assert_eq!("test_in_lib", test_3.name);
+        assert_eq!("test_in_lib_1", test_4.name);
+        assert_eq!("test_in_lib_2", test_5.name);
 
         Ok(())
     }
