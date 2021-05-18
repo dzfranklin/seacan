@@ -1,11 +1,13 @@
 use std::sync::Once;
 
+use tracing::Level;
+
 static INIT: Once = Once::new();
 
 pub fn init() {
     INIT.call_once(|| {
         tracing_subscriber::fmt()
-            .with_env_filter(tracing_subscriber::EnvFilter::from_default_env())
+            .with_max_level(Level::DEBUG)
             .with_test_writer()
             .pretty()
             .init();
