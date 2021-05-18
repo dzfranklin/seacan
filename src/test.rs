@@ -2,6 +2,7 @@
 //! Main entrypoint: [`test::Compiler`]
 
 use std::{
+    fmt,
     io::{self, BufReader},
     path::PathBuf,
     process::{Command, Stdio},
@@ -89,6 +90,15 @@ pub enum TestFnType {
     Test,
     /// A bench (unstable, created with `#[bench]`)
     Bench,
+}
+
+impl fmt::Display for TestFnType {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::Test => write!(f, "test"),
+            Self::Bench => write!(f, "bench"),
+        }
+    }
 }
 
 /// Specify tests and benches based on their name
