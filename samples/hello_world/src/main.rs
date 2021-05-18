@@ -1,5 +1,7 @@
 fn main() {
     println!("Hello, world!");
+    panic!();
+    println!("Warn this is unreachable");
 }
 
 #[test]
